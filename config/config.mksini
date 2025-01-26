@@ -1,0 +1,59 @@
+
+[fila]
+enable                         = 1
+
+
+[target]
+extruder                       = 250
+heaterbed                      = 80
+hot                            = 55
+
+
+[babystep]
+value                          = 0.000
+adxl_offset                    = 0.15
+
+
+[oobe]
+enable                         = 0
+
+
+[mks_ethernet]
+enable                         = 0
+
+
+[app_connection]
+method                         = 1
+
+
+[app_server]
+name                           = aws
+
+
+[device_code]
+value                          = lb9hyhc6
+
+
+[device_state]
+state                          = standby_0.00
+
+
+[pops]
+pop_1                          = false
+pop_2                          = false
+
+
+[total]
+time                           = 9234
+
+
+[app]
+token                          = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrX25hbWUiOiJUcmFuc211dGF0ZWQiLCJ1c2VyX2lkIjoiMjAwNjM4NDgxOTgwOTgxMjQ4IiwiaWF0IjoxNzM1MjI4MDEwLCJleHAiOjE3MzU4MzI4MTB9.IuUtEIHJ_dK42GFzyY6N69jLnAZcgRi3O9lgoXiUiFc
+username                       = Transmutated
+avatar                         = 
+
+
+[led]
+enable                         = 1
+
+
