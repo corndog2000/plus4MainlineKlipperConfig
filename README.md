@@ -14,3 +14,4 @@ here to capture my tooling for the project.
 the source controlled directory.
 * updateConfigs.sh - a tool to nuke all configs in the working printer config directory
 and installing them from the source controlled directory.
+* breakoutMacros.sh - file parser to find macros and break them out into declared locations
