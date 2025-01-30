@@ -76,7 +76,7 @@ Ensure you plug in the 6pin connector to the toolhead pinheader with the correct
 With that said, plug in all of the wiring from the programmer to the pinheader. I found that you didn't have to enter dfu mode with the programmer, simply run the following command:
 
 ```
-mks@qidi-plus4:~/katapult$ st-flash write out/katapult.bin 0x8000000
+mks@qidi-plus4:~/katapult$ st-flash write out/katapult.bin 0x0800000
 st-flash 1.7.0
 2025-01-27T22:59:31 INFO common.c: F1xx High-density: 64 KiB SRAM, 128 KiB flash in at least 2 KiB pages.
 file out/katapult.bin md5 checksum: ff798a9a344c4de2679164e815f49ca, stlink checksum: 0x00044bf7
