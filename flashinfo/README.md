@@ -57,11 +57,11 @@ Once your output matches what you have here, it's safe to say that you programme
 +-------- J1 6-Pin Connector --------+            +---------- STLink V2 20-Pin Connector -----------+
 |                                    |            |                                                 |
 | Pin 1: DIO   ----------------------|------------| Pin 7: SWDIO / TMS7                             |
-| Pin 2: CLK   ----------------------|------------| Pin 9: SWCLK / TCK9                             |
-| Pin 3: RST   ----------------------|------------| Pin 15: MCU RST                                 |
-| Pin 4: GND   ----------------------|------------| Pin 12: GND                                     |
-| Pin 5: GND                         |            |                                                 | 
-| Pin 6: 3V3   ----------------------|---+--------| Pin 1: VDD                                      |
+| Pin 3: CLK   ----------------------|------------| Pin 9: SWCLK / TCK9                             |
+| Pin 5: RST   ----------------------|------------| Pin 15: MCU RST                                 |
+| Pin 6: GND   ----------------------|------------| Pin 12: GND                                     |
+| Pin 4: GND                         |            |                                                 | 
+| Pin 2: 3V3   ----------------------|---+--------| Pin 1: VDD                                      |
 |                                    |   |        |                                                 |
 |                                    |   |--------| Pin 19: VDD                                     |
 +------------------------------------+            +-------------------------------------------------+
@@ -76,7 +76,7 @@ Ensure you plug in the 6pin connector to the toolhead pinheader with the correct
 With that said, plug in all of the wiring from the programmer to the pinheader. I found that you didn't have to enter dfu mode with the programmer, simply run the following command:
 
 ```
-mks@qidi-plus4:~/katapult$ st-flash write out/katapult.bin 0x0800000
+mks@qidi-plus4:~/katapult$ st-flash write out/katapult.bin 0x8000000
 st-flash 1.7.0
 2025-01-27T22:59:31 INFO common.c: F1xx High-density: 64 KiB SRAM, 128 KiB flash in at least 2 KiB pages.
 file out/katapult.bin md5 checksum: ff798a9a344c4de2679164e815f49ca, stlink checksum: 0x00044bf7
