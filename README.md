@@ -1,10 +1,8 @@
 # Overview
 This is a public first attempt to get the plus 4 working on mainline klipper or kalico.
 
-## Additional Testing Once Flashed & Fixes
-* Validate that filament cutting isn't causing false y home positions
-* Validate heater and heater fan functionality
-* optimize macros across many files
+## To do still...
+* Finish writing up flashing doc 
 
 ## Scripts Directory
 These are just a few scripts I am using to manage code from my source directory and the

@@ -121,3 +121,6 @@ Verification Complete: SHA = 17F568DAD314AA754EE8E6E5D40B1921E30BDB34
 Flash Success  
 ```
 Klipper is now flashed to the toolhead! 
+
+## Flashing the SOC MCU
+WIP
