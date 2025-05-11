@@ -1,0 +1,73 @@
+[delayed_gcode STARTUP_ENABLE_FILAMENT_SENSOR]
+initial_duration: 1.0
+gcode:
+    ENABLE_FILAMENT_WIDTH_SENSOR
+    M118 Filament width sensor enabled at startup
+
+[output_pin filament_detected]
+pin: PA10  # Your fake MCU pin
+value: 1  # Default to filament present
+shutdown_value: 0
+
+[gcode_macro FILAMENT_RUN_OUT]
+gcode:
+    SET_PIN PIN=filament_detected VALUE=0
+    RESPOND MSG="Filament run out detected - MCU pin set to LOW"
+
+[gcode_macro FILAMENT_INSERTED]
+gcode:
+    SET_PIN PIN=filament_detected VALUE=1
+    M118 Filament inserted - Virtual pin set to HIGH
+
+[delayed_gcode FILAMENT_MONITOR]
+initial_duration: 0.1
+gcode:
+    {% if printer['hall_filament_width_sensor'].filament_detected %}
+        {% if printer['output_pin filament_detected'].value == 0 %}
+            SET_PIN PIN=filament_detected VALUE=1
+            RESPOND MSG="Filament detected - Setting pin HIGH" COLOR="success"
+        {% endif %}
+    {% else %}
+        {% if printer['output_pin filament_detected'].value == 1 %}
+            SET_PIN PIN=filament_detected VALUE=0
+            RESPOND MSG="No filament - Setting pin LOW" COLOR="warning"
+        {% endif %}
+    {% endif %}
+    UPDATE_DELAYED_GCODE ID=FILAMENT_MONITOR DURATION=0.25
+
+[gcode_macro RESET_FILAMENT_PIN]
+gcode:
+    SET_PIN PIN=filament_detected VALUE=1
+    M118 Filament pin manually reset to HIGH
+
+[gcode_macro QUERY_FILAMENT_PIN]
+gcode:
+    {% set pin_value = printer["output_pin filament_detected"].value %}
+    M118 Filament detected pin is: {pin_value} ({"HIGH" if pin_value else "LOW"})
+
+[gcode_macro QUERY_HALL_SENSOR_STATUS]
+gcode:
+    {% if printer['hall_filament_width_sensor'].filament_detected %}
+        RESPOND MSG="Hall sensor: Filament detected"
+    {% else %}
+        RESPOND MSG="Hall sensor: No filament"
+    {% endif %}
+    RESPOND MSG="Output pin status: {printer['output_pin filament_detected'].value}"
+
+[gcode_macro SYNC_FILAMENT_PIN]
+gcode:
+    {% if printer['hall_filament_width_sensor'].filament_detected %}
+        SET_PIN PIN=filament_detected VALUE=1
+        RESPOND MSG="Sync: Filament detected - Pin set HIGH"
+    {% else %}
+        SET_PIN PIN=filament_detected VALUE=0
+        RESPOND MSG="Sync: No filament - Pin set LOW"
+    {% endif %}
+
+[delayed_gcode STARTUP_ENABLE_FILAMENT_SENSOR]
+initial_duration: 0.25
+gcode:
+    ENABLE_FILAMENT_WIDTH_SENSOR
+    SYNC_FILAMENT_PIN
+    UPDATE_DELAYED_GCODE ID=FILAMENT_MONITOR DURATION=0.25
+    RESPOND MSG="Filament monitoring started"
